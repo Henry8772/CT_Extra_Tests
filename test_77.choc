@@ -1,0 +1,7 @@
+# RUN: choco-opt %s | filecheck %s
+
+x: bool = True if 1 > 0 else False
+
+# CHECK:SyntaxError (line 3, column 16): token of kind TokenKind.NEWLINE not found.
+# CHECK-NEXT:>>>x: bool = True if 1 > 0 else False
+# CHECK-NEXT:>>>---------------^

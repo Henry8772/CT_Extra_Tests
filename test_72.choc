@@ -1,0 +1,8 @@
+# RUN: choco-opt %s | filecheck %s
+
+x: [int] = [1, 2, 3]
+y: int = x[1]
+
+# CHECK:SyntaxError (line 3, column 12): Expected a literal after variable declaration
+# CHECK-NEXT:>>>x: [int] = [1, 2, 3]
+# CHECK-NEXT:>>>-----------^

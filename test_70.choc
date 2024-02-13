@@ -1,0 +1,11 @@
+# RUN: choco-opt %s | filecheck %s
+
+def f():
+  y: int = 0
+  def g():
+    nonlocal y
+    y = y + 1
+
+# CHECK:SyntaxError (line 5, column 3): Expected expression.
+# CHECK-NEXT:>>>  def g():
+# CHECK-NEXT:>>>--^

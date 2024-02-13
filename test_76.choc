@@ -1,0 +1,18 @@
+# RUN: choco-opt %s | filecheck %s
+
+for i in range(10):
+  pass
+
+# CHECK:builtin.module {
+# CHECK-NEXT:  "choco.ast.program"() ({
+# CHECK-NEXT:  ^0:
+# CHECK-NEXT:  }, {
+# CHECK-NEXT:    "choco.ast.for"() <{"iter_name" = "i"}> ({
+# CHECK-NEXT:      "choco.ast.call_expr"() <{"func" = "range"}> ({
+# CHECK-NEXT:        "choco.ast.literal"() <{"value" = 10 : i32}> : () -> ()
+# CHECK-NEXT:      }) : () -> ()
+# CHECK-NEXT:    }, {
+# CHECK-NEXT:      "choco.ast.pass"() : () -> ()
+# CHECK-NEXT:    }) : () -> ()
+# CHECK-NEXT:  }) : () -> ()
+# CHECK-NEXT:}

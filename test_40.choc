@@ -1,0 +1,33 @@
+# RUN: choco-opt %s | filecheck %s
+
+1 and 2 or 3 and (4 if 5 < 6 else 7)
+
+# CHECK:builtin.module {
+# CHECK-NEXT:  "choco.ast.program"() ({
+# CHECK-NEXT:  ^0:
+# CHECK-NEXT:  }, {
+# CHECK-NEXT:    "choco.ast.binary_expr"() <{"op" = "or"}> ({
+# CHECK-NEXT:      "choco.ast.binary_expr"() <{"op" = "and"}> ({
+# CHECK-NEXT:        "choco.ast.literal"() <{"value" = 1 : i32}> : () -> ()
+# CHECK-NEXT:      }, {
+# CHECK-NEXT:        "choco.ast.literal"() <{"value" = 2 : i32}> : () -> ()
+# CHECK-NEXT:      }) : () -> ()
+# CHECK-NEXT:    }, {
+# CHECK-NEXT:      "choco.ast.binary_expr"() <{"op" = "and"}> ({
+# CHECK-NEXT:        "choco.ast.literal"() <{"value" = 3 : i32}> : () -> ()
+# CHECK-NEXT:      }, {
+# CHECK-NEXT:        "choco.ast.if_expr"() ({
+# CHECK-NEXT:          "choco.ast.binary_expr"() <{"op" = "<"}> ({
+# CHECK-NEXT:            "choco.ast.literal"() <{"value" = 5 : i32}> : () -> ()
+# CHECK-NEXT:          }, {
+# CHECK-NEXT:            "choco.ast.literal"() <{"value" = 6 : i32}> : () -> ()
+# CHECK-NEXT:          }) : () -> ()
+# CHECK-NEXT:        }, {
+# CHECK-NEXT:          "choco.ast.literal"() <{"value" = 4 : i32}> : () -> ()
+# CHECK-NEXT:        }, {
+# CHECK-NEXT:          "choco.ast.literal"() <{"value" = 7 : i32}> : () -> ()
+# CHECK-NEXT:        }) : () -> ()
+# CHECK-NEXT:      }) : () -> ()
+# CHECK-NEXT:    }) : () -> ()
+# CHECK-NEXT:  }) : () -> ()
+# CHECK-NEXT:}

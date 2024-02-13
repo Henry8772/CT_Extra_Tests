@@ -1,0 +1,7 @@
+# RUN: choco-opt %s | filecheck %s
+
+[1, 2, 3][1:2][0]
+
+# CHECK:SyntaxError (line 3, column 12): token of kind TokenKind.RSQUAREBRACKET not found.
+# CHECK-NEXT:>>>[1, 2, 3][1:2][0]
+# CHECK-NEXT:>>>-----------^

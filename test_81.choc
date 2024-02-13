@@ -1,0 +1,24 @@
+# RUN: choco-opt %s | filecheck %s
+
+def f(x: [[int]]):
+  pass
+
+# CHECK:builtin.module {
+# CHECK-NEXT:  "choco.ast.program"() ({
+# CHECK-NEXT:    "choco.ast.func_def"() <{"func_name" = "f"}> ({
+# CHECK-NEXT:      "choco.ast.typed_var"() <{"var_name" = "x"}> ({
+# CHECK-NEXT:        "choco.ast.list_type"() ({
+# CHECK-NEXT:          "choco.ast.list_type"() ({
+# CHECK-NEXT:            "choco.ast.type_name"() <{"type_name" = "int"}> : () -> ()
+# CHECK-NEXT:          }) : () -> ()
+# CHECK-NEXT:        }) : () -> ()
+# CHECK-NEXT:      }) : () -> ()
+# CHECK-NEXT:    }, {
+# CHECK-NEXT:      "choco.ast.type_name"() <{"type_name" = "<None>"}> : () -> ()
+# CHECK-NEXT:    }, {
+# CHECK-NEXT:      "choco.ast.pass"() : () -> ()
+# CHECK-NEXT:    }) : () -> ()
+# CHECK-NEXT:  }, {
+# CHECK-NEXT:  ^0:
+# CHECK-NEXT:  }) : () -> ()
+# CHECK-NEXT:}

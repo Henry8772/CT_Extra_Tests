@@ -1,0 +1,16 @@
+# RUN: choco-opt %s | filecheck %s
+
+while False:
+  pass
+
+# CHECK:builtin.module {
+# CHECK-NEXT:  "choco.ast.program"() ({
+# CHECK-NEXT:  ^0:
+# CHECK-NEXT:  }, {
+# CHECK-NEXT:    "choco.ast.while"() ({
+# CHECK-NEXT:      "choco.ast.literal"() <{"value" = #choco.ast.bool<False>}> : () -> ()
+# CHECK-NEXT:    }, {
+# CHECK-NEXT:      "choco.ast.pass"() : () -> ()
+# CHECK-NEXT:    }) : () -> ()
+# CHECK-NEXT:  }) : () -> ()
+# CHECK-NEXT:}
