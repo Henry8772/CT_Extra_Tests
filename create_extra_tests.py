@@ -1,3 +1,4 @@
+import os
 # List of expressions to be evaluated
 expressions = [
     "1 * (1 - 2 * 3) // 3",
@@ -93,8 +94,13 @@ expressions = [
 ]
 
 # Directory to store the files
-directory = "tests/extra_test/"
-
+directory = "tests/extra_test/tests/"
+if not os.path.exists(directory):
+    # Create the directory, including any necessary parent directories
+    os.makedirs(directory)
+    print(f"Directory '{directory}' was created.")
+else:
+    print(f"Directory '{directory}' already exists.")
 import subprocess
 
 
@@ -136,14 +142,8 @@ for index, expr in enumerate(expressions, start=1):
         
         with open(filename, 'r') as file:
             initial_content = file.readlines()
-        # print(initial_content)
         final_content = initial_content + ['\n'] + transformed_lines
 
-
-        # Apply "CHECK-NEXT" for subsequent lines
-        
-        # File to store the transformed output
-        # transformed_filename = "/mnt/data/transformed_choco_opt_output.txt"
 
         # # Writing the transformed content to the file
         print(final_content)
