@@ -6,6 +6,6 @@ def f():
     nonlocal y
     y = y + 1
 
-# CHECK:SyntaxError (line 5, column 3): Expected expression.
+# CHECK:SyntaxError (line 5, column 3): expected at least one indented statement in function.
 # CHECK-NEXT:>>>  def g():
 # CHECK-NEXT:>>>--^

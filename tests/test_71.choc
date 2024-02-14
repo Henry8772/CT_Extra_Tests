@@ -20,7 +20,17 @@ else:
 # CHECK-NEXT:    }, {
 # CHECK-NEXT:      "choco.ast.pass"() : () -> ()
 # CHECK-NEXT:    }, {
-# CHECK-NEXT:      "choco.ast.pass"() : () -> ()
+# CHECK-NEXT:      "choco.ast.if"() ({
+# CHECK-NEXT:        "choco.ast.binary_expr"() <{"op" = "<"}> ({
+# CHECK-NEXT:          "choco.ast.id_expr"() <{"id" = "x"}> : () -> ()
+# CHECK-NEXT:        }, {
+# CHECK-NEXT:          "choco.ast.literal"() <{"value" = 0 : i32}> : () -> ()
+# CHECK-NEXT:        }) : () -> ()
+# CHECK-NEXT:      }, {
+# CHECK-NEXT:        "choco.ast.pass"() : () -> ()
+# CHECK-NEXT:      }, {
+# CHECK-NEXT:        "choco.ast.pass"() : () -> ()
+# CHECK-NEXT:      }) : () -> ()
 # CHECK-NEXT:    }) : () -> ()
 # CHECK-NEXT:  }) : () -> ()
 # CHECK-NEXT:}
